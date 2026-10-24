@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+
+// 1. Define theme configuration
+$my-theme-config: (
+  color: (
+    primary: mat.$green-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  ),
+);
+
+// 2. Create the theme object
+$theme: mat.define-theme($my-theme-config);
+
+// 3. Apply global theme styles
+html {
+  height: 100%;
+  @include mat.theme($my-theme-config);
+}
+
+body {
+  color-scheme: light;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+// 4. Button colors — pass $theme
+.my-primary-button {
+  @include mat.button-color($theme, $color-variant: primary);
+}
+
+.my-tertiary-button {
+  @include mat.button-color($theme, $color-variant: tertiary);
+}
+
+.my-error-button {
+  @include mat.button-color($theme, $color-variant: error);
+}
