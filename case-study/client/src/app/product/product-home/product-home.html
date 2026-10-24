@@ -1,0 +1,68 @@
+<mat-card>
+  @if (hasSelectedProduct()) {
+    <mat-card-title align="center" style="margin: 1rem">
+      {{ newProduct() ? 'New Product' : 'Product Details' }}
+    </mat-card-title>
+    <mat-card-content>
+      <app-product-details
+        [product]="productInDetail()"
+        [vendors]="vendors()"
+        [isNew]="newProduct()"
+        (saved)="saveProduct($event)"
+        (deleted)="deleteProduct($event)"
+        (closed)="refresh()"
+      />
+    </mat-card-content>
+  } @else {
+    <mat-card-title align="center" style="margin: 1rem">Products</mat-card-title>
+    <mat-card-content>
+      <table mat-table [dataSource]="productsTable">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let product">{{ product.id }}</td>
+        </ng-container>
+        <ng-container matColumnDef="vendor">
+          <th mat-header-cell *matHeaderCellDef>Vendor</th>
+          <td mat-cell *matCellDef="let product">
+            {{ vendorOfId(product.vendorId)?.name ?? 'N/A' }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let product">{{ product.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="cost">
+          <th mat-header-cell *matHeaderCellDef>Cost</th>
+          <td mat-cell *matCellDef="let product">{{ product.cost | currency }}</td>
+        </ng-container>
+        <ng-container matColumnDef="msrp">
+          <th mat-header-cell *matHeaderCellDef>MSRP</th>
+          <td mat-cell *matCellDef="let product">{{ product.msrp | currency }}</td>
+        </ng-container>
+        <ng-container matColumnDef="qoh">
+          <th mat-header-cell *matHeaderCellDef>QOH</th>
+          <td mat-cell *matCellDef="let product">{{ product.qoh }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="tableColumns; sticky: true"></tr>
+        <tr
+          mat-row
+          *matRowDef="let product; columns: tableColumns"
+          (click)="selectProduct(product)"
+        ></tr>
+      </table>
+    </mat-card-content>
+  }
+</mat-card>
+
+@if (!hasSelectedProduct()) {
+  <button
+    mat-fab
+    (click)="addNewProduct()"
+    matTooltip="Add New Product"
+    class="addicon add-product-btn"
+    color="primary"
+  >
+    <mat-icon>control_point</mat-icon>
+  </button>
+}

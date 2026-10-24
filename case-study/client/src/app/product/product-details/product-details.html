@@ -1,0 +1,112 @@
+<form [formGroup]="productForm">
+  <mat-accordion>
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Product Information</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div style="display: flex">
+        <mat-form-field floatLabel="always" style="width: 90%; margin: auto">
+          <mat-label>ID</mat-label>
+          <input matInput type="text" required formControlName="id" [readonly]="!isNew()" />
+          @if (productForm.get('id')?.hasError('required')) {
+            <mat-error>ID is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div style="display: flex">
+        <mat-form-field floatLabel="always" style="width: 90%; margin: auto">
+          <mat-label>Vendor</mat-label>
+          <mat-select required formControlName="vendorId">
+            @for (vendor of vendors(); track vendor.id) {
+              <mat-option [value]="vendor.id">{{ vendor.name }}</mat-option>
+            }
+          </mat-select>
+          @if (productForm.get('vendorId')?.hasError('min')) {
+            <mat-error>Vendor is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div style="display: flex">
+        <mat-form-field floatLabel="always" style="width: 90%; margin: auto">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" required formControlName="name" />
+          @if (productForm.get('name')?.hasError('required')) {
+            <mat-error>Name is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div style="display: flex">
+        <mat-form-field floatLabel="always" style="width: 90%; margin: auto">
+          <mat-label>Cost</mat-label>
+          <input matInput type="number" required formControlName="cost" />
+          @if (productForm.get('cost')?.hasError('required')) {
+            <mat-error>Cost is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div style="display: flex">
+        <mat-form-field floatLabel="always" style="width: 90%; margin: auto">
+          <mat-label>MSRP</mat-label>
+          <input matInput type="number" required formControlName="msrp" />
+          @if (productForm.get('msrp')?.hasError('required')) {
+            <mat-error>MSRP is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Inventory Information</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div style="display: flex">
+        <mat-form-field floatLabel="always" style="width: 90%; margin: auto">
+          <mat-label>Re-order Point</mat-label>
+          <input matInput type="number" required formControlName="rop" />
+          @if (productForm.get('rop')?.hasError('required')) {
+            <mat-error>Re-order point is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div style="display: flex">
+        <mat-form-field floatLabel="always" style="width: 90%; margin: auto">
+          <mat-label>Economic Order Quantity</mat-label>
+          <input matInput type="number" required formControlName="eoq" />
+          @if (productForm.get('eoq')?.hasError('required')) {
+            <mat-error>Economic order quantity is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div style="display: flex">
+        <mat-form-field floatLabel="always" style="width: 90%; margin: auto">
+          <mat-label>Quantity on Hand</mat-label>
+          <input matInput type="number" required formControlName="qoh" />
+          @if (productForm.get('qoh')?.hasError('required')) {
+            <mat-error>Quantity on hand is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div style="display: flex">
+        <mat-form-field floatLabel="always" style="width: 90%; margin: auto">
+          <mat-label>Quantity on Order</mat-label>
+          <input matInput type="number" required formControlName="qoo" />
+          @if (productForm.get('qoo')?.hasError('required')) {
+            <mat-error>Quantity on order is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div style="display: flex; width: 90%; margin: auto; margin-top: 1em">
+    <button mat-raised-button type="button" style="color: green" [disabled]="!productForm.valid" (click)="save()">
+      Save
+    </button>
+    <span style="flex: 1 1 auto"></span>
+    @if (!isNew()) {
+      <button mat-raised-button type="button" style="color: red" (click)="deleted.emit(product().id)">
+        Delete
+      </button>
+      <span style="flex: 1 1 auto"></span>
+    }
+    <button mat-raised-button type="button" style="color: maroon" (click)="closed.emit()">Close</button>
+  </div>
+</form>

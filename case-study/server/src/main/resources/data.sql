@@ -6,3 +6,10 @@ INSERT INTO Vendor (Address, City, Province, Postal_Code, Phone, Type, Name, Ema
     VALUES ('922 Oak St', 'London', 'On', 'N1N-1N3', '(555)555-5593', 'Untrusted', 'Shady Sams', 'ss@underthetable.com');
 INSERT INTO Vendor (Address, City, Province, Postal_Code, Phone, Type, Name, Email)
     VALUES ('123 Streety St.', 'London', 'ON', 'N1N-1N4', '(555)555-55594', 'Trusted', 'Abdul Wasay', 'a_wasay@fanshaweonline.ca');
+
+INSERT INTO Product (ID, Vendor_ID, Name, Cost, MSRP, ROP, EOQ, QOH, QOO)
+    VALUES ('P-01', 4, 'Product 1', 100, 120, 5, 5, 10, 0);
+INSERT INTO Product (ID, Vendor_ID, Name, Cost, MSRP, ROP, EOQ, QOH, QOO)
+    VALUES ('P-02', 4, 'Product 2', 200, 240, 10, 10, 20, 0);
+INSERT INTO Product (ID, Vendor_ID, Name, Cost, MSRP, ROP, EOQ, QOH, QOO)
+    VALUES ('P-03', 4, 'Abdul Wasay Product', 300, 360, 15, 15, 30, 0);

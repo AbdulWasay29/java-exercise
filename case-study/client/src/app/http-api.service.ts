@@ -15,7 +15,7 @@ export class HttpApiService<T> {
     return this.http.get<T[]>(`${this.apiURL()}/${this.endPoint}`);
   }
 
-  getById(id: number): Observable<T> {
+  getById(id: string): Observable<T> {
     return this.http.get<T>(`${this.apiURL()}/${this.endPoint}/${id}`);
   }
 
@@ -27,7 +27,7 @@ export class HttpApiService<T> {
     return this.http.put<T>(`${this.apiURL()}/${this.endPoint}`, data);
   }
 
-  delete(id: number): Observable<number> {
+  delete(id: string): Observable<number> {
     return this.http.delete<number>(`${this.apiURL()}/${this.endPoint}/${id}`);
   }
 }
