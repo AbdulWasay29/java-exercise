@@ -1,4 +1,4 @@
-import { Vendor } from './vendor/vendor';
+import { Vendor } from '@app/vendor/vendor';
 
 export const VENDOR_DEFAULT: Vendor = {
   id: 0,

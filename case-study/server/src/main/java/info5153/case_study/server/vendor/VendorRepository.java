@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface VendorRepository extends CrudRepository<Vendor, Long> {
     @Modifying
     @Transactional
-    @Query("DELETE FROM Vendor vendor WHERE vendor.ID = ?1")
+    @Query("DELETE FROM Vendor vendor WHERE vendor.id = ?1")
     int deleteOne(Long id);
 }

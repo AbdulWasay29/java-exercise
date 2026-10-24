@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(
-        origins = "http://localhost:4200",
+        origins = {"http://localhost:4200", "http://localhost:5200"},
         methods = {
                 RequestMethod.GET,
                 RequestMethod.PUT,
@@ -34,6 +34,13 @@ public class VendorController {
     public ResponseEntity<Iterable<Vendor>> findAll() {
         Iterable<Vendor> vendors = vendorRepository.findAll();
         return new ResponseEntity<>(vendors, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/vendors/{id}")
+    public ResponseEntity<Vendor> findById(@PathVariable long id) {
+        return vendorRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/api/vendors")

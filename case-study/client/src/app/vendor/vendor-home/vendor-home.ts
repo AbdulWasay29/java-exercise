@@ -4,10 +4,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { Vendor } from '../vendor';
-import { VendorService } from '../vendor.service';
-import { VendorDetails } from '../vendor-details/vendor-details';
-import { VENDOR_DEFAULT } from '../../constants';
+import { Vendor } from '@app/vendor/vendor';
+import { VendorService } from '@app/vendor/vendor.service';
+import { VendorDetails } from '@app/vendor/vendor-details/vendor-details';
+import { VENDOR_DEFAULT } from '@app/constants';
 
 @Component({
   selector: 'app-vendor-home',
@@ -27,7 +27,7 @@ export class VendorHome implements OnInit {
   }
 
   refresh(): void {
-    this.vendorService.getVendors().subscribe({
+    this.vendorService.getAll().subscribe({
       next: (payload: Vendor[]) => this.vendors.set(payload),
       error: (error: Error) => console.error(error),
       complete: () => this.selectVendor(VENDOR_DEFAULT)
@@ -57,21 +57,21 @@ export class VendorHome implements OnInit {
   }
 
   updateVendor(vendor: Vendor): void {
-    this.vendorService.updateVendor(vendor).subscribe({
+    this.vendorService.update(vendor).subscribe({
       error: (error: Error) => console.error(error),
       complete: () => this.refresh()
     });
   }
 
   createVendor(vendor: Vendor): void {
-    this.vendorService.createVendor(vendor).subscribe({
+    this.vendorService.create(vendor).subscribe({
       error: (error: Error) => console.error(error),
       complete: () => this.refresh()
     });
   }
 
   deleteVendor(id: number): void {
-    this.vendorService.deleteVendor(id).subscribe({
+    this.vendorService.delete(id).subscribe({
       next: (deletedCount: number) => console.log(`${deletedCount} deleted`),
       error: (error: Error) => console.error(error),
       complete: () => this.refresh()

@@ -5,4 +5,4 @@ INSERT INTO Vendor (Address, City, Province, Postal_Code, Phone, Type, Name, Ema
 INSERT INTO Vendor (Address, City, Province, Postal_Code, Phone, Type, Name, Email)
     VALUES ('922 Oak St', 'London', 'On', 'N1N-1N3', '(555)555-5593', 'Untrusted', 'Shady Sams', 'ss@underthetable.com');
 INSERT INTO Vendor (Address, City, Province, Postal_Code, Phone, Type, Name, Email)
-    VALUES ('123 Streety St.', 'London', 'ON', 'N1N-1N4', '(555)555-55594', 'Trusted', 'YOUR NAME', 'your_name@fanshaweonline.ca');
+    VALUES ('123 Streety St.', 'London', 'ON', 'N1N-1N4', '(555)555-55594', 'Trusted', 'Abdul Wasay', 'a_wasay@fanshaweonline.ca');
