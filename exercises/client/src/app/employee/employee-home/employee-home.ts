@@ -4,10 +4,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
-import { EmployeeDetails } from '../employee-details/employee-details';
-import { EMPLOYEE_DEFAULT } from '../../constants';
+import { Employee } from '@app/employee/employee';
+import { EmployeeService } from '@app/employee/employee.service';
+import { EmployeeDetails } from '@app/employee/employee-details/employee-details';
+import { EMPLOYEE_DEFAULT } from '@app/constants';
 
 @Component({
   selector: 'app-employee-home',
@@ -28,7 +28,7 @@ export class EmployeeHome implements OnInit {
   }
 
   refresh(): void {
-    this.employeeService.getEmployees().subscribe({
+    this.employeeService.getAll().subscribe({
       next: (payload: Employee[]) => this.employees.set(payload),
       error: (error: Error) => console.error(error),
       complete: () => this.selectEmployee(EMPLOYEE_DEFAULT)
@@ -58,21 +58,21 @@ export class EmployeeHome implements OnInit {
   }
 
   updateEmployee(employee: Employee): void {
-    this.employeeService.updateEmployee(employee).subscribe({
+    this.employeeService.update(employee).subscribe({
       error: (error: Error) => console.error(error),
       complete: () => this.refresh()
     });
   }
 
   createEmployee(employee: Employee): void {
-    this.employeeService.createEmployee(employee).subscribe({
+    this.employeeService.create(employee).subscribe({
       error: (error: Error) => console.error(error),
       complete: () => this.refresh()
     });
   }
 
   deleteEmployee(id: number): void {
-    this.employeeService.deleteEmployee(id).subscribe({
+    this.employeeService.delete(id).subscribe({
       next: (deletedCount: number) => console.log(`${deletedCount} deleted`),
       error: (error: Error) => console.error(error),
       complete: () => this.refresh()

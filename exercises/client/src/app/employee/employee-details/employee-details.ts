@@ -3,9 +3,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule, MatError, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Employee } from '../employee';
-import { EMPLOYEE_DEFAULT } from '../../constants';
-import { ValidatePhone } from '../../validators/phone.validator';
+import { Employee } from '@app/employee/employee';
+import { EMPLOYEE_DEFAULT } from '@app/constants';
+import { ValidatePhone } from '@app/validators/phone.validator';
 
 @Component({
   selector: 'app-employee-details',

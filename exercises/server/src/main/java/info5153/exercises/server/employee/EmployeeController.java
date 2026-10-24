@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(
-        origins = "http://localhost:4200",
+        origins = {"http://localhost:4200", "http://localhost:5200"},
         methods = {
                 RequestMethod.GET,
                 RequestMethod.PUT,

@@ -1,4 +1,4 @@
-import { Employee } from './employee/employee';
+import { Employee } from '@app/employee/employee';
 
 export const EMPLOYEE_DEFAULT: Employee = {
   id: 0,

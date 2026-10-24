@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     @Modifying
     @Transactional
-    @Query("DELETE FROM Employee employee WHERE employee.ID = ?1")
+    @Query("DELETE FROM Employee employee WHERE employee.id = ?1")
     int deleteOne(Long id);
 }
