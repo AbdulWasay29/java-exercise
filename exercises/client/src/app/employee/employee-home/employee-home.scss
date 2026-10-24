@@ -1,6 +1,14 @@
 mat-list-item:nth-child(odd) {
   background-color: white;
 }
-mat-list-item:nth-child(even) {
-  background-color: #eeeeee;
+
+mat-list-item {
+  border-radius: 10px;
+}
+
+.addicon {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1000;
 }

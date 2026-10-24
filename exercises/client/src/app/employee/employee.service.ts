@@ -30,6 +30,16 @@ export class EmployeeService {
     }).pipe(map((response) => this.toEmployee(response)));
   }
 
+  createEmployee(employee: Employee): Observable<Employee> {
+    const { id: _id, ...employeeFields } = employee;
+    return this.http.post<EmployeeApiResponse>('http://localhost:8080/api/employees', employeeFields)
+      .pipe(map((response) => this.toEmployee(response)));
+  }
+
+  deleteEmployee(id: number): Observable<number> {
+    return this.http.delete<number>(`http://localhost:8080/api/employees/${id}`);
+  }
+
   private toEmployee(employee: EmployeeApiResponse): Employee {
     const id = employee.id ?? employee.ID;
     if (id === undefined) {

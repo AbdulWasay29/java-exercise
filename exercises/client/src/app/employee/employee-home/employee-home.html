@@ -1,10 +1,13 @@
 <mat-card>
   <mat-card-content>
     @if (hasEmployeeSelected()) {
-      <mat-card-title align="center" style="margin: 1rem">Employee Details</mat-card-title>
+      <mat-card-title align="center" style="margin: 1rem">
+        {{ newEmployee() ? 'New Employee' : 'Employee Details' }}
+      </mat-card-title>
       <app-employee-details
         [employee]="employeeInDetail()"
-        (saved)="updateEmployee($event)"
+        (saved)="saveEmployee($event)"
+        (deleted)="deleteEmployee($event)"
         (closed)="refresh()"
       />
     } @else {
@@ -19,3 +22,15 @@
     }
   </mat-card-content>
 </mat-card>
+
+@if (!hasEmployeeSelected()) {
+  <button
+    mat-fab
+    (click)="addNewEmployee()"
+    matTooltip="Add New Employee"
+    class="addicon"
+    color="primary"
+  >
+    <mat-icon>control_point</mat-icon>
+  </button>
+}
