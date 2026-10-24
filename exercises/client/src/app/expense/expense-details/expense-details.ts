@@ -40,7 +40,7 @@ export class ExpenseDetails implements OnInit {
     description: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     date: new FormControl<Date | null>(null, { validators: [Validators.required] }),
     amount: new FormControl<number | null>(null, {
-      validators: [Validators.required, Validators.min(0.01)]
+      validators: [Validators.required, Validators.min(1)]
     })
   });
 

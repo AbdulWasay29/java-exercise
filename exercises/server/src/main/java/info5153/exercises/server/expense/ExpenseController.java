@@ -25,11 +25,9 @@ public class ExpenseController {
         return new ResponseEntity<>(expenseRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/expenses/{id}")
-    public ResponseEntity<Expense> findById(@PathVariable long id) {
-        return expenseRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping("/api/expenses/{employeeId}")
+    public ResponseEntity<Iterable<Expense>> findByEmployeeId(@PathVariable long employeeId) {
+        return new ResponseEntity<>(expenseRepository.findByEmployeeId(employeeId), HttpStatus.OK);
     }
 
     @PutMapping("/api/expenses")

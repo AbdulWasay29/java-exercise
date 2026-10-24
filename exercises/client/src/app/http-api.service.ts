@@ -19,6 +19,10 @@ export class HttpApiService<T> {
     return this.http.get<T>(`${this.apiURL()}/${this.endPoint}/${id}`);
   }
 
+  getAllById(id: number): Observable<T[]> {
+    return this.http.get<T[]>(`${this.apiURL()}/${this.endPoint}/${id}`);
+  }
+
   create(data: T): Observable<T> {
     return this.http.post<T>(`${this.apiURL()}/${this.endPoint}`, data);
   }

@@ -20,7 +20,7 @@ public class ReportDAO {
         entityManager.persist(report);
 
         for (ReportItem item : report.getItems()) {
-            item.setReportId(report.getID());
+            item.setReportId(report.getId());
             entityManager.persist(item);
         }
 

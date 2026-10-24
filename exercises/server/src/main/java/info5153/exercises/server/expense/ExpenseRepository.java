@@ -1,5 +1,7 @@
 package info5153.exercises.server.expense;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin
 @RepositoryRestResource(collectionResourceRel = "expenses", path = "expenses")
 public interface ExpenseRepository extends CrudRepository<Expense, Long> {
+    List<Expense> findByEmployeeId(Long employeeId);
+
     @Modifying
     @Transactional
     @Query("DELETE FROM Expense expense WHERE expense.id = ?1")

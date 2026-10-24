@@ -13,12 +13,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import info5153.exercises.server.report.Report;
 import info5153.exercises.server.report.ReportDAO;
 import info5153.exercises.server.report.ReportItem;
+import info5153.exercises.server.expense.Expense;
+import info5153.exercises.server.expense.ExpenseRepository;
 
 @SpringBootTest
 class ServerApplicationTests {
 
 	@Autowired
 	private ReportDAO reportDAO;
+
+	@Autowired
+	private ExpenseRepository expenseRepository;
 
 	@Test
 	void contextLoads() {
@@ -37,11 +42,20 @@ class ServerApplicationTests {
 
 		Report created = reportDAO.create(report);
 
-		assertTrue(created.getID() > 0);
+		assertTrue(created.getId() > 0);
 		assertEquals(6, created.getEmployeeId());
 		assertEquals(2, created.getItems().size());
-		assertTrue(created.getItems().stream().allMatch(item -> item.getReportId() == created.getID()));
-		assertTrue(created.getItems().stream().allMatch(item -> item.getID() > 0));
+		assertTrue(created.getItems().stream().allMatch(item -> item.getReportId() == created.getId()));
+		assertTrue(created.getItems().stream().allMatch(item -> item.getId() > 0));
 		assertNotNull(created.getDate());
 	}
+
+	@Test
+	void findsExpensesByEmployeeId() {
+		List<Expense> employeeExpenses = expenseRepository.findByEmployeeId(1L);
+
+		assertEquals(3, employeeExpenses.size());
+		assertTrue(employeeExpenses.stream().allMatch(expense -> expense.getEmployeeId() == 1));
+	}
+
 }
