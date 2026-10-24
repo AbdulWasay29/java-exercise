@@ -4,7 +4,7 @@
   "cli": {
     "packageManager": "npm",
     "analytics": "1cb0c6a0-1029-4673-a35f-f31012462be8",
-    "schematicCollections": ["@cypress/schematic", "@schematics/angular"]
+    "schematicCollections": ["@schematics/angular", "@cypress/schematic"]
   },
   "newProjectRoot": "projects",
   "projects": {

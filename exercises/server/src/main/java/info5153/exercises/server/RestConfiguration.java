@@ -1,6 +1,8 @@
 package info5153.exercises.server;
 
 import info5153.exercises.server.employee.Employee;
+import info5153.exercises.server.expense.Expense;
+import info5153.exercises.server.expense.ExpenseCategory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -11,6 +13,6 @@ public class RestConfiguration implements RepositoryRestConfigurer {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-        config.exposeIdsFor(Employee.class);
+        config.exposeIdsFor(Employee.class, Expense.class, ExpenseCategory.class);
     }
 }

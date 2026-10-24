@@ -7,6 +7,6 @@ describe('Employee - Read', () => {
     cy.wait('@getEmployees');
 
     cy.get('mat-list-item').should('have.length.at.least', 1);
-    cy.get('mat-list-item').should('contain.text', '1 - Abdul, Wasay');
+    cy.get('mat-list-item').should('contain.text', '6 - Abdul, Wasay');
   });
 });
