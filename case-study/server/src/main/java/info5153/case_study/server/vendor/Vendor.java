@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long ID;
     private String name;
     private String address;
     private String city;

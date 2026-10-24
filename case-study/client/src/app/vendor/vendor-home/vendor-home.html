@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-title align="center" style="margin: 1rem">Vendors</mat-card-title>
+  <mat-card-content>
+    <mat-list>
+      @for (vendor of vendors(); track vendor.id) {
+        <mat-list-item>
+          {{ vendor.id }} - {{ vendor.name }}, {{ vendor.city }} ({{ vendor.type }})
+        </mat-list-item>
+      }
+    </mat-list>
+  </mat-card-content>
+</mat-card>
