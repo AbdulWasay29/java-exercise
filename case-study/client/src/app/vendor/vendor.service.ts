@@ -28,6 +28,16 @@ export class VendorService {
     }).pipe(map((response) => this.toVendor(response)));
   }
 
+  createVendor(vendor: Vendor): Observable<Vendor> {
+    const { id: _id, ...vendorFields } = vendor;
+    return this.http.post<VendorApiResponse>('http://localhost:8080/api/vendors', vendorFields)
+      .pipe(map((response) => this.toVendor(response)));
+  }
+
+  deleteVendor(id: number): Observable<number> {
+    return this.http.delete<number>(`http://localhost:8080/api/vendors/${id}`);
+  }
+
   private toVendor(vendor: VendorApiResponse): Vendor {
     const id = vendor.id ?? vendor.ID;
     if (id === undefined) {

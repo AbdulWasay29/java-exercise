@@ -1,10 +1,13 @@
 <mat-card>
   <mat-card-content>
     @if (hasVendorSelected()) {
-      <mat-card-title align="center" style="margin: 1rem">Vendor Details</mat-card-title>
+      <mat-card-title align="center" style="margin: 1rem">
+        {{ newVendor() ? 'New Vendor' : 'Vendor Details' }}
+      </mat-card-title>
       <app-vendor-details
         [vendor]="vendorInDetail()"
-        (saved)="updateVendor($event)"
+        (saved)="saveVendor($event)"
+        (deleted)="deleteVendor($event)"
         (closed)="refresh()"
       />
     } @else {
@@ -19,3 +22,15 @@
     }
   </mat-card-content>
 </mat-card>
+
+@if (!hasVendorSelected()) {
+  <button
+    mat-fab
+    (click)="addNewVendor()"
+    matTooltip="Add New Vendor"
+    class="addicon"
+    color="primary"
+  >
+    <mat-icon>control_point</mat-icon>
+  </button>
+}

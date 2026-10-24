@@ -4,53 +4,85 @@
     <mat-form-field style="width: 90%; margin: auto">
       <mat-label>Name</mat-label>
       <input matInput type="text" required formControlName="name" />
+      @if (vendorForm.get('name')?.hasError('required')) {
+        <mat-error>Name is required</mat-error>
+      }
     </mat-form-field>
   </div>
   <div style="display: flex">
     <mat-form-field style="width: 90%; margin: auto">
       <mat-label>Address</mat-label>
       <input matInput type="text" required formControlName="address" />
+      @if (vendorForm.get('address')?.hasError('required')) {
+        <mat-error>Address is required</mat-error>
+      }
     </mat-form-field>
   </div>
   <div style="display: flex">
     <mat-form-field style="width: 90%; margin: auto">
       <mat-label>City</mat-label>
       <input matInput type="text" required formControlName="city" />
+      @if (vendorForm.get('city')?.hasError('required')) {
+        <mat-error>City is required</mat-error>
+      }
     </mat-form-field>
   </div>
   <div style="display: flex">
     <mat-form-field style="width: 90%; margin: auto">
       <mat-label>Province</mat-label>
       <input matInput type="text" required formControlName="province" />
+      @if (vendorForm.get('province')?.hasError('required')) {
+        <mat-error>Province is required</mat-error>
+      }
     </mat-form-field>
   </div>
   <div style="display: flex">
     <mat-form-field style="width: 90%; margin: auto">
       <mat-label>Postal Code</mat-label>
       <input matInput type="text" required formControlName="postalCode" />
+      @if (vendorForm.get('postalCode')?.hasError('required')) {
+        <mat-error>Postal code is required</mat-error>
+      }
     </mat-form-field>
   </div>
   <div style="display: flex">
     <mat-form-field style="width: 90%; margin: auto">
       <mat-label>Phone</mat-label>
       <input matInput type="text" required formControlName="phone" />
+      @if (vendorForm.get('phone')?.hasError('required')) {
+        <mat-error>Phone is required</mat-error>
+      } @if (vendorForm.get('phone')?.hasError('invalidPhone')) {
+        <mat-error>Format: ###-###-####</mat-error>
+      }
     </mat-form-field>
   </div>
   <div style="display: flex">
     <mat-form-field style="width: 90%; margin: auto">
       <mat-label>Type</mat-label>
       <input matInput type="text" required formControlName="type" />
+      @if (vendorForm.get('type')?.hasError('required')) {
+        <mat-error>Type is required</mat-error>
+      }
     </mat-form-field>
   </div>
   <div style="display: flex">
     <mat-form-field style="width: 90%; margin: auto">
       <mat-label>Email</mat-label>
       <input matInput type="email" required formControlName="email" />
+      @if (vendorForm.get('email')?.hasError('required')) {
+        <mat-error>Email is required</mat-error>
+      } @if (vendorForm.get('email')?.hasError('email')) {
+        <mat-error>Format: a@b.c</mat-error>
+      }
     </mat-form-field>
   </div>
-  <div style="display: flex; width: 90%; margin: auto">
-    <button mat-raised-button type="button" style="color: green" (click)="save()">Save</button>
+  <div style="display: flex; width: 90%; margin: auto; margin-top: 1em">
+    <button mat-raised-button type="button" style="color: green" [disabled]="!vendorForm.valid" (click)="save()">Save</button>
     <span style="flex: 1 1 auto"></span>
+    @if (vendor().id > 0) {
+      <button mat-raised-button type="button" style="color: red" (click)="deleted.emit(vendor().id)">Delete</button>
+      <span style="flex: 1 1 auto"></span>
+    }
     <button mat-raised-button type="button" style="color: maroon" (click)="closed.emit()">Close</button>
   </div>
 </form>
