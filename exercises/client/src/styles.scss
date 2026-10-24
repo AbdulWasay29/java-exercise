@@ -46,3 +46,7 @@ body {
 .my-error-button {
   @include mat.button-color($theme, $color-variant: error);
 }
+
+.mat-sort-header-container {
+  justify-content: center;
+}

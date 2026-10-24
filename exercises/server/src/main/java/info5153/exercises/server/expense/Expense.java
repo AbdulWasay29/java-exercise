@@ -1,7 +1,9 @@
 package info5153.exercises.server.expense;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,5 +20,6 @@ public class Expense {
     private String categoryId;
     private String description;
     private BigDecimal amount;
-    private String date;
+    @Column(name = "Date")
+    private LocalDate date;
 }

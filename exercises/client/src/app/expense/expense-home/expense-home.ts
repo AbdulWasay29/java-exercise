@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatSortHeader, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Employee } from '@app/employee/employee';
 import { EmployeeService } from '@app/employee/employee.service';
@@ -19,6 +20,8 @@ import { ExpenseDetails } from '@app/expense/expense-details/expense-details';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    MatSortHeader,
+    MatSortModule,
     MatTableModule,
     MatTooltipModule,
     ExpenseDetails
@@ -65,6 +68,28 @@ export class ExpenseHome implements OnInit {
 
   employeeOfId(employeeId: number): Employee | undefined {
     return this.employees().find((employee) => employee.id === employeeId);
+  }
+
+  sortExpenses(sort: Sort): void {
+    if (!sort.direction) {
+      return;
+    }
+
+    const columnToSortingFunction = {
+      id: (a: Expense, b: Expense) => sort.direction === 'asc' ? a.id - b.id : b.id - a.id,
+      employeeId: (a: Expense, b: Expense) =>
+        sort.direction === 'asc' ? a.employeeId - b.employeeId : b.employeeId - a.employeeId,
+      date: (a: Expense, b: Expense) =>
+        sort.direction === 'asc'
+          ? a.date.localeCompare(b.date)
+          : b.date.localeCompare(a.date)
+    };
+
+    if (sort.active !== 'id' && sort.active !== 'employeeId' && sort.active !== 'date') {
+      return;
+    }
+
+    this.expensesTable.data = [...this.expensesTable.data].sort(columnToSortingFunction[sort.active]);
   }
 
   expenseDate(date: string): Date | null {
